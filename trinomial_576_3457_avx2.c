@@ -456,7 +456,7 @@ void invntt_encode()
         zetas_inv_exp[k++] = -1665;
         zetas_inv_exp[k++] = -1665;
 
-        //기억이 안남.... 전체적인 기법이랑, 3*2^x의 역수 포함
+        //inverse of 3^x*2^y
         zetas_inv_exp[k++] = (int16_t)(-66 * QINV);
         zetas_inv_exp[k++] = (int16_t)(-66 * QINV);
         zetas_inv_exp[k++] = -66;
