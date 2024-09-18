@@ -210,7 +210,7 @@ void ntt_encode()
         zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
         zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
         zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
-        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];        
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];     
     }
 
     printf("k : %d\n", k);
@@ -218,7 +218,7 @@ void ntt_encode()
 //level4
     for (int i = 0; i < 9; i++)
     {
-        zetas_exp[k++] = ntt_tree[4][(i << 4)] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3)] * QINV;
         zetas_exp[k++] = ntt_tree[4][(i << 3)] * QINV;
         zetas_exp[k++] = ntt_tree[4][(i << 3)] * QINV;
         zetas_exp[k++] = ntt_tree[4][(i << 3)] * QINV;
@@ -425,7 +425,7 @@ void invntt_encode()
 //level4
     for (int i = 0; i < 9; i++)
     {
-        zetas_inv_exp[k++] = invntt_tree[4][(i << 4)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)] * QINV;
         zetas_inv_exp[k++] = invntt_tree[4][(i << 3)] * QINV;
         zetas_inv_exp[k++] = invntt_tree[4][(i << 3)] * QINV;
         zetas_inv_exp[k++] = invntt_tree[4][(i << 3)] * QINV;
