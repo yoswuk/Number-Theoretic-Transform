@@ -15,8 +15,8 @@ int16_t ntt_tree[8][288] = {0};
 int16_t invntt_tree[8][288] = {0};
 
 //invntt
-int16_t zetas_exp[860] = {0};
-int16_t zetas_inv_exp[864] = {0};
+int16_t zetas_exp[1220] = {0};
+int16_t zetas_inv_exp[1224] = {0};
 
 int center(int a)
 {
@@ -176,25 +176,83 @@ void ntt_encode()
     printf("k : %d\n", k);
 
 //level3
-    for (int i = 0; i < 18; i++)
+    for (int i = 0; i < 9; i++)
     {
-        zetas_exp[k++] = ntt_tree[3][2*i] * QINV;
-        zetas_exp[k++] = ntt_tree[3][2*i] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2)] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2] * QINV;
 
-        zetas_exp[k++] = ntt_tree[3][2*i];
-        zetas_exp[k++] = ntt_tree[3][2*i];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2)];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];
+        zetas_exp[k++] = ntt_tree[3][(i << 2) + 2];        
     }
+
     printf("k : %d\n", k);
 
 //level4
-    for (int i = 0; i < 36; i++)
+    for (int i = 0; i < 9; i++)
     {
-        zetas_exp[k++] = ntt_tree[4][2*i] * QINV;
-        zetas_exp[k++] = ntt_tree[4][2*i] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 4)] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3)] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3)] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3)] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6] * QINV;
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6] * QINV;
 
-        zetas_exp[k++] = ntt_tree[4][2*i];
-        zetas_exp[k++] = ntt_tree[4][2*i];
+        zetas_exp[k++] = ntt_tree[4][(i << 3)];
+        zetas_exp[k++] = ntt_tree[4][(i << 3)];
+        zetas_exp[k++] = ntt_tree[4][(i << 3)];
+        zetas_exp[k++] = ntt_tree[4][(i << 3)];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 2];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 4];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6];
+        zetas_exp[k++] = ntt_tree[4][(i << 3) + 6];        
     }
+
     printf("k : %d\n", k);
 
 //level5
@@ -365,25 +423,83 @@ void invntt_encode()
     printf("k : %d\n", k);
 
 //level4
-    for (int i = 0; i < 36; i++)
+    for (int i = 0; i < 9; i++)
     {
-        zetas_inv_exp[k++] = invntt_tree[4][2*i] * QINV;
-        zetas_inv_exp[k++] = invntt_tree[4][2*i] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 4)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6] * QINV;
 
-        zetas_inv_exp[k++] = invntt_tree[4][2*i];
-        zetas_inv_exp[k++] = invntt_tree[4][2*i];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3)];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 2];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 4];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6];
+        zetas_inv_exp[k++] = invntt_tree[4][(i << 3) + 6];        
     }
+
     printf("k : %d\n", k);
 
 //level3
-    for (int i = 0; i < 18; i++)
+    for (int i = 0; i < 9; i++)
     {
-        zetas_inv_exp[k++] = invntt_tree[3][2*i] * QINV;
-        zetas_inv_exp[k++] = invntt_tree[3][2*i] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2] * QINV;
 
-        zetas_inv_exp[k++] = invntt_tree[3][2*i];
-        zetas_inv_exp[k++] = invntt_tree[3][2*i];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2)];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];
+        zetas_inv_exp[k++] = invntt_tree[3][(i << 2) + 2];        
     }
+
     printf("k : %d\n", k);
 
 //level2
@@ -480,14 +596,14 @@ void ntt()
 {
     trans_tree();
     ntt_encode();
-    printf("int16_t zetas[860] = {\n");
-    for (int i = 0; i < 859; i++)
+    printf("int16_t zetas[1220] = {\n");
+    for (int i = 0; i < 1219; i++)
     {
         if(i%8==0) printf("\t");
         printf("%6d, ", zetas_exp[i]);
         if(i%8 == 7) printf("\n");
     }
-    printf("%6d", zetas_exp[859]);
+    printf("%6d", zetas_exp[1219]);
     printf("\n};");
     printf("\n\n");
 }
@@ -497,13 +613,13 @@ void invntt()
     trans_tree_inv();
     invntt_encode();
 
-    printf("int16_t zetas_inv[864] = {\n\t");
-    for (int i = 0; i < 863; i++)
+    printf("int16_t zetas_inv[1224] = {\n\t");
+    for (int i = 0; i < 1223; i++)
     {   
         printf("%6d, ", zetas_inv_exp[i]);   
         if(i%8==7) printf("\n\t");
     }
-    printf("%6d", zetas_inv_exp[863]);
+    printf("%6d", zetas_inv_exp[1223]);
     printf("\n};");
     printf("\n\n");
 }
