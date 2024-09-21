@@ -545,10 +545,10 @@ void invntt_encode()
         zetas_inv_exp[k++] = -1665;
 
         //기억이 안남.... 전체적인 기법이랑, 3*2^x의 역수 포함
-        zetas_inv_exp[k++] = (int16_t)(-33 * QINV);
-        zetas_inv_exp[k++] = (int16_t)(-33 * QINV);
-        zetas_inv_exp[k++] = -33;
-        zetas_inv_exp[k++] = -33; //&3391
+        zetas_inv_exp[k++] = (int16_t)(1679 * QINV);
+        zetas_inv_exp[k++] = (int16_t)(1679 * QINV);
+        zetas_inv_exp[k++] = 1679;
+        zetas_inv_exp[k++] = 1679; //&3391
     }
     printf("k : %d\n", k);
 }
