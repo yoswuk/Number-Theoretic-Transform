@@ -65,6 +65,48 @@ void merge3_ntt(int16_t r[128])
         zeta[i] = zetas[i+1];
     }
     
+	for (int i = 0; i < 32; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			v[j] = r[32*j+i];
+		}
+
+		t = fqmul(zeta[0], v[2]);
+		v[2] = (v[0] - t);
+		v[0] = (v[0] + t);
+
+		t = fqmul(zeta[0], v[3]);
+		v[3] = (v[1] - t);
+		v[1] = (v[1] + t);
+
+		t = fqmul(zeta[1], v[1]);
+		v[1] = (v[0] - t);
+		v[0] = (v[0] + t);
+
+		t = fqmul(zeta[2], v[3]);
+		v[3] = (v[2] - t);
+		v[2] = (v[2] + t);
+
+		for (int j = 0; j < 4; j++)
+		{
+			r[32*j+i] = v[j];
+		}
+	}
+}
+/*
+void merge3_ntt(int16_t r[128])
+{
+	int16_t t;
+	int16_t zeta[8];
+	int16_t v[8];
+
+	
+    for (int i = 0; i < 8; i++)
+    {
+        zeta[i] = zetas[i+1];
+    }
+    
 	for (int i = 0; i < 16; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -103,7 +145,7 @@ void merge3_ntt(int16_t r[128])
 		t = fqmul(zeta[2], v[7]);
 		v[7] = (v[5] - t);
 		v[5] = (v[5] + t);
-/*
+
 		t = fqmul(zeta[3], v[1]);
 		v[1] = barrett_reduce(v[0] - t);
 		v[0] = barrett_reduce(v[0] + t);
@@ -119,17 +161,18 @@ void merge3_ntt(int16_t r[128])
 		t = fqmul(zeta[6], v[7]);
 		v[7] = barrett_reduce(v[6] - t);
 		v[6] = barrett_reduce(v[6] + t);
-*/
+
 		for (int j = 0; j < 8; j++)
 		{
 			r[16*j+i] = v[j];
 		}
 	}
 }
-
+*/
 void merge2_ntt(int16_t r[128])
 {
 	int16_t t;
+	int32_t S0,S1;
 	int32_t T0,T1,T2,T3,T4;
 	int16_t zeta[3];
 	int16_t v[4];
@@ -146,8 +189,12 @@ void merge2_ntt(int16_t r[128])
 			v[j] = r[32*j+i];
 		}
 
-		T0 = zetas[0]*v[0] + zeta[0]*v[2];
-		T1 = zetas[0]*v[0] - zeta[0]*v[2];
+		S0 = R*v[0];
+		S1 = zeta[0]*v[2];
+
+		T0 = S0 + S1;
+		T1 = S0 - S1;
+		
 		T2 = zeta[1]*v[1] + zeta[2]*v[3];
 		T3 = zeta[2]*v[1] + zeta[1]*v[3];
 
